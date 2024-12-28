@@ -1,0 +1,19 @@
+.teampage {
+  position: relative;
+}
+
+.teampage h1 {
+  font-size: 6.25rem;
+  text-align: center;
+  margin-top: 0px;
+  margin-bottom: 60px;
+}
+
+.teampage__nav-button {
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  top: 0;
+  left: 30px;
+  z-index: 1;
+}
