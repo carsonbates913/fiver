@@ -1,0 +1,26 @@
+.quote-item {
+  flex: 1;
+}
+
+.quote-item p {
+  margin: 0 0 .5rem 0;
+  font-size: 1.25rem;
+  font-weight: 300;
+}
+
+.quote-item__container {
+  height: 7.5rem;
+  padding: 1rem;
+  border: 1px solid #DFDFDF;
+  border-radius: .25rem;
+}
+
+.quote-item__container svg{
+  height: 1rem;
+  margin-bottom: .25rem;
+}
+
+.quote-item__container p {
+  display: inline-block;
+  line-height: 1.75rem;
+}
