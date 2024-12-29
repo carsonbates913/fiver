@@ -29,5 +29,5 @@ export default function MainNavigation(props) {
 MainNavigation.propTypes = {
   isNavVisible: PropTypes.bool.isRequired,
   toggleNav: PropTypes.func,
-  isStatic: PropTypes.bool,
+  isStatic: PropTypes.object,
 }

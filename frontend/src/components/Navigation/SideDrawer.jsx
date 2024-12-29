@@ -29,6 +29,6 @@ export default function SideDrawer(props) {
 
 SideDrawer.propTypes = {
   show: PropTypes.bool.isRequired,
-  children: PropTypes.element,
-  isStatic: PropTypes.bool.isRequired,
+  children: PropTypes.array,
+  isStatic: PropTypes.object,
 }
