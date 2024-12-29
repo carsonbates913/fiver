@@ -1,0 +1,38 @@
+.info-list {
+  padding: 0;
+  height: 2.75rem;
+  margin: 2rem 0 0 0;
+  border: 1px solid #DFDFDF;
+  border-radius: .5rem;
+  display: flex;
+  list-style: none;
+}
+
+.info-list__item {
+  padding: 0 1.5rem;
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 1rem;
+}
+
+.info-list__item svg{
+  height: 1.5rem;
+}
+
+.info-list__item:not(:last-child)::after {
+  content: '';
+  height: 70%;
+  width: 1px;
+  position: absolute;
+  right: 0;
+  background-color: #DFDFDF;
+}
+
+.info-list__item p {
+  margin: 4px 0 0 0 ;
+  font-size: 1rem;
+  font-weight: 200;
+}
