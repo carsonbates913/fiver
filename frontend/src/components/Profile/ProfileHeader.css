@@ -1,0 +1,50 @@
+.profile-header {
+  height: 280px;
+  margin: 2rem 0px;
+  position: relative;
+  display: flex;
+}
+
+.profile-header__image {
+  height: 100%;
+  aspect-ratio: 1 / 1;
+}
+
+.profile-header__details {
+  padding: 0 2rem;
+  flex: 1;
+}
+
+.profile-header__details h1 {
+  margin: 0 0 .5rem 0;
+  font-size: 1.75rem;
+}
+
+.profile-header__details h2 {
+  margin: 0 0 40px 0;
+  color: #6D6D6D;
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.profile-header__tag-container {
+  display: flex;
+  gap: .7rem;
+}
+
+.profile-header__quote {
+  flex: 1;
+}
+
+.profile-header__quote h2 {
+  font-size: 1.25rem;
+  font-weight: 200;
+}
+
+.profile-header__actions {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  gap: .7rem;
+}
