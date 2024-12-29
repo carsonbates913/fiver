@@ -26,6 +26,7 @@ function RootLayout() {
   }, [isNavVisible]);
 
   const isStatic = matchPath("/:userId/profile", location.pathname);
+  console.log(isStatic);
 
   return (
     <div className="layout-container" style={{display: "flex"}}>
