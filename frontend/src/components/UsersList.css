@@ -1,0 +1,9 @@
+.users-list {
+  width: fit-content;
+  padding: 0;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 280px 280px 280px 280px;
+  gap: 40px;
+  list-style: none;
+}
