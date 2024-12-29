@@ -1,0 +1,49 @@
+.feed-page {
+  position: relative;
+}
+
+.feed-page__nav-button {
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  top: 0;
+  left: 30px;
+  z-index: 1;
+}
+
+.feed-page h1 {
+  margin: 20px 0 0 0; 
+  font-size: 6rem;
+  text-align: center;
+}
+
+.feed-page svg {
+  transform: translateY(.1rem);
+}
+
+.feed-page h2 {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 100;
+}
+
+.feed-page__add-five-button {
+  padding: 1.5rem 5rem;
+  border-radius: 1rem;
+  margin: 100px auto 30px auto;
+  display: block;
+  color: white;
+  font-size: 1.5rem;
+  font-family: chivo, sans-serif;
+  font-weight: 600;
+  letter-spacing: .3rem;
+  background-color: black;
+}
+
+.feed-page h3 {
+  text-align: center;
+  color: #333333;
+  font-size: 1.5rem;
+  font-weight: 100;
+}
