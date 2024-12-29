@@ -1,0 +1,12 @@
+.nav-button {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  border: 1px solid transparent;
+  background-color: transparent;
+}
+
+.nav-button:hover {
+  cursor: pointer;
+  border: 1px solid black;
+}
