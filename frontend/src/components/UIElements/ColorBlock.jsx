@@ -6,7 +6,7 @@ export default function ColorBlock(props) {
 
   if(props.isButton) {
     return(
-      <button className="color-block" onClick={props.onClick} style={{color: props.color, backgroundColor: props.backgroundColor, border: props.border}}>
+      <button className="color-block" type={props.type} onClick={props.onClick} style={{color: props.color, backgroundColor: props.backgroundColor, border: props.border}}>
         {props.text}
       </button>
     )
@@ -26,4 +26,5 @@ ColorBlock.propTypes = {
   isButton: PropTypes.bool,
   onClick: PropTypes.func,
   border: PropTypes.string,
+  type: PropTypes.string,
 }
