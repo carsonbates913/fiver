@@ -47,3 +47,9 @@
   font-size: 1.5rem;
   font-weight: 100;
 }
+
+.feed-page__modal {
+  width: 37.5rem;
+  border-radius: 1rem;
+  background-color: white;
+}
