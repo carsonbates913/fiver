@@ -6,7 +6,7 @@ export default function FavoriteItem(props) {
   return (
     <>
     <li className="favorite-item">
-      <div className="favorite-item__number-card">1</div>
+      <div className="favorite-item__number-card">{props.order}</div>
       <h3>{props.thing}</h3>
     </li>
     </>
@@ -15,4 +15,5 @@ export default function FavoriteItem(props) {
 
 FavoriteItem.propTypes = {
   thing: PropTypes.string.isRequired,
+  order: PropTypes.string.isRequired,
 }

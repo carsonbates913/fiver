@@ -8,7 +8,7 @@ export default function ProfileHeader(props) {
   return (
     <div className="profile-header">
       <div className="profile-header__image">
-        <Avatar image="/TanjiroWood.jpeg" radius="4px" alt="profile picture"/>
+        <Avatar image="/Profile_Photo_Carson.JPG" radius="4px" alt="profile picture"/>
       </div>
       <div className="profile-header__details">
         <h1>{props.name}</h1>
