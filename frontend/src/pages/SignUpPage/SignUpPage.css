@@ -1,44 +1,30 @@
-.login-page {
-  position: relative;
+.sign-up-page {
   display: flex;
   flex-flow: column nowrap;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   background-color: black;
 }
 
-.login-page__background svg {
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  z-index: 0;
-  top: 0;
-  left: 0;
-}
-
-.login-page h1 {
-  margin: 7.5rem 0 4rem 0;
-  position: relative;
-  z-index: 1;
+.sign-up-page h1 {
+  margin: 100px 0 50px 0;
   color: white;
   font-size: 7rem;
   font-weight: 400;
   letter-spacing: 2rem;
 }
 
-.login-page__form {
-  position: relative;
-  z-index: 1;
+.sign-up-page__form {
+  display: flex;
+  flex-flow: column nowrap;
 }
 
-.login-page__form p {
-  height: 1rem;
-  margin: 0 0 .25rem 0;
+.sign-up-page__form p {
   color: white; 
   text-align: center;
 }
 
-.login-page__sign-in-button {
+.sign-up-page__sign-in-button {
   width: 32rem;
   height: 3.25rem;
   border: 1px solid white;
@@ -52,7 +38,7 @@
   cursor: pointer;
 }
 
-.login-page__form h2 {
+.sign-up-page__form h2 {
   margin-top: 2rem;
   color: white;
   font-size: 1.25rem;
@@ -60,7 +46,7 @@
   text-align: center;
 }
 
-.login-page__form a {
+.sign-up-page__form a {
   color: white;
   font-size: 1.25rem;
   font-weight: 600;

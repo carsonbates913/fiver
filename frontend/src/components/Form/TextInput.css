@@ -1,0 +1,23 @@
+.text-input {
+  padding: 2rem 0 0 0;
+  position: relative;
+}
+
+.text-input input {
+  width: 32rem;
+  height: 3.25rem;
+  padding: 1.5rem 1rem;
+  border: none;
+  border-radius: .5rem; 
+  background-color: white;
+  outline: none;
+}
+
+.text-input p {
+  margin: 0;
+  position: absolute;
+  top: 0.75rem;
+  color: white;
+  font-size: .75rem;
+  font-weight: 200;
+}
