@@ -1,4 +1,4 @@
-import { useReducer, useState, useCallback } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import './FeedForm.css'
@@ -6,36 +6,14 @@ import UserDropdown from './UserDropdown.jsx';
 import WordInput from './WordInput.jsx';
 import MessageInput from './MessageInput.jsx';
 import ColorBlock from '../UIElements/ColorBlock.jsx';
-
-const formReducer = (state, action) => {
-  switch(action.type) {
-    case "INPUT_CHANGE": {
-      let isValid = true;
-      for(const id in state.inputs){
-        if(id === action.id){
-          isValid = isValid && action.isValid;
-        }else {
-          isValid = isValid && state.inputs[id].isValid;
-        }
-      }
-      return {
-        ...state,
-        inputs: {
-          ...state.inputs,
-          [action.id]: {value: action.value, isValid: action.isValid},
-        },
-        isValid: isValid,
-      }
-    }
-  }
-}
+import { useForm } from '../Util/FormFunctions.js';
 
 export default function FeedForm(props) {
 
   const [attemptedSubmit, setAttemptedSubmit] = useState(false);
 
-  const [formState, dispatch] = useReducer(formReducer, {
-    inputs: {
+  const {formState, onInput} = useForm(
+    {
       user: {
         value: '',
         isValid: false,
@@ -49,17 +27,7 @@ export default function FeedForm(props) {
         isValid: true,
       }
     },
-    isValid: false
-  })
-
-  const onInput = useCallback((id, value, isValid) => {
-    dispatch({
-      type: "INPUT_CHANGE",
-      id: id,
-      value: value,
-      isValid: isValid,
-    });
-  }, []);
+    false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
