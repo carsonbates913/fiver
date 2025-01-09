@@ -13,7 +13,7 @@ router.post('/', [
   check('toId').not().isEmpty(),
   check('words').not().isEmpty(),
   check('from').not().isEmpty(),
-  check('fromId').not().isEmpty(),
+  check('sender').not().isEmpty(),
 ], fivesController.createFive);
 
 router.patch('/:fid',
