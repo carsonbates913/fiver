@@ -8,7 +8,7 @@ export default function TeamPage () {
 
   const toggleNav = useOutletContext();
 
-  const USERS = [{id: "1", name: "Daisy Thompson", image: "/TanjiroWood.jpeg", role: "designer"}, {id: "2", name: "carson", image: "/TanjiroWood.jpeg", role: "developer"}, {id: "3", name: "Daisy Thompson", image: "/TanjiroWood.jpeg", role: "designer"}, {id: "4", name: "Daisy Thompson", image: "/TanjiroWood.jpeg", role: "designer"},{id: "5", name: "Daisy Thompson", image: "/TanjiroWood.jpeg", role: "designer"},]
+  const USERS = [{id: "1", name: "Daisy Thompson", image: "/Profile_Photo_Carson.JPG", role: "designer"}, {id: "2", name: "carson", image: "/Profile_Photo_Carson.JPG", role: "developer"}, {id: "3", name: "Daisy Thompson", image: "/Profile_Photo_Carson.JPG", role: "designer"}, {id: "4", name: "Daisy Thompson", image: "/Profile_Photo_Carson.JPG", role: "designer"},{id: "5", name: "Daisy Thompson", image: "/Profile_Photo_Carson.JPG", role: "designer"},]
 
   return (
     <>
