@@ -30,9 +30,6 @@ export default function LoginPage () {
   const handleSubmit = (e) => {
     e.preventDefault();
     if(formState.isValid){
-      console.log("success")
-      console.log(formState);
-      setHadAttempt(true);
       login();
       navigate('/feed');
     }else{
