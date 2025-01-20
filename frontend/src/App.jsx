@@ -28,7 +28,7 @@ function RootLayout() {
     }
   }, [isNavVisible]);
 
-  const isStatic = matchPath("/:userId/profile", location.pathname);
+  const isStatic = matchPath("/:profileId/profile", location.pathname);
 
   return (
     <div className="layout-container" style={{display: "flex"}}>
@@ -54,14 +54,14 @@ function App() {
     },
     {
       path: '/',
-      element: <RootLayout />,
+      element: <ProtectedRoute />,
       children: [{
         path: '/',
-        element: <ProtectedRoute/>,
+        element: <RootLayout/>,
         children:  [
-          { path: '/:userId/profile', element: <ProfilePage /> },
           { path: '/feed', element: <FeedPage /> },
           { path: '/team', element: <TeamPage /> },
+          { path: '/:profileId/profile', element: <ProfilePage /> },
         ],
       }]
     },
