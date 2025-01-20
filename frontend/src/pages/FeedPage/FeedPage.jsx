@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useOutletContext } from 'react-router-dom';
 
 import './FeedPage.css'
@@ -7,10 +7,15 @@ import Feed from '../../components/Feed.jsx';
 import Modal from '../../components/UIElements/Modal.jsx';
 import FeedForm from '../../components/Form/FeedForm.jsx';
 import Five from '../../components/Five.jsx';
+import { useHttpRequest } from '../../hooks/httpHook.js';
+import { AuthContext } from '../../context/AuthContext.jsx';
 
 export default function FeedPage() {
 
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [loadedFives, setLoadedFives] = useState();
+
+  const { userId, token } = useContext(AuthContext);
 
   const handleOpenModal = () => {
     setIsModalVisible(true);
@@ -21,6 +26,34 @@ export default function FeedPage() {
   }
 
   const toggleNav = useOutletContext();
+
+  const { isLoading, sendHttpRequest } = useHttpRequest();
+
+  useEffect(() => {
+    const fetchFives = async () => {
+      try {
+        const data = await sendHttpRequest(
+          'http://localhost:3000/api/fives',
+          'GET',
+          {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token,
+          },
+          null,
+        )
+  
+        setLoadedFives(data.fives);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    fetchFives();
+  }, [sendHttpRequest]);
+
+  const fiveDeleteHandler = (fiveId) => {
+    setLoadedFives(prev => prev.filter(five => five.id !== fiveId));
+  }
 
   return (
     <>
@@ -50,11 +83,12 @@ export default function FeedPage() {
         <h2>12/8 - 12/15</h2>
         <button className="feed-page__add-five-button" onClick={handleOpenModal}>Send A Five</button>
         <h3>Shoutout a teammate for their excellent work!</h3>
+        {!isLoading && loadedFives &&         
         <Feed>
-          <Five color="blue" to="Carson" from="Kelly" words={["Oustanding", "Wonderful"]} top="200" left="200"/>
-          <Five color="pink" to="Parker" from="Carson" words={["Kind", "Responsible"]} top="100" left="700"/>
-          <Five color="green" to="Jill" from="Kaitlyn" words={["Confident", "Bright"]} top="500" left="900"/>
-        </Feed>
+          {loadedFives.map((five => 
+            <Five key={five.id} id={five.id} onDelete={fiveDeleteHandler} canDelete={five.sender === userId} color="blue" to={five.to} from={five.from} words={five.words} />
+          ))}
+        </Feed>}
       </main>
     </>
   )
