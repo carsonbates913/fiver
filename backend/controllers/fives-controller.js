@@ -4,6 +4,17 @@ const mongoose = require('mongoose');
 const Five = require('../models/five');
 const User = require('../models/user');
 
+const getFives = async (req, res, next) => {
+  let fives;
+  try {
+    fives = await Five.find({});
+  } catch (error) {
+    throw new HttpError("Somethign went wrong, could not find fives");
+  } 
+
+  res.json({fives: fives.map((five) => five.toObject({getters: true}))});
+}
+
 const getFiveById = async (req, res, next) => {
   const fiveId = req.params.fid;
 
@@ -143,6 +154,7 @@ const deleteFive = async (req, res, next) => {
   res.status(200).json("Deleted five");
 }
 
+exports.getFives = getFives;
 exports.getFiveById = getFiveById;
 exports.getFivesByUserId = getFivesByUserId;
 exports.createFive = createFive;
