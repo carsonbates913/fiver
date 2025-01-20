@@ -26,6 +26,7 @@ export default function ProfileHeader(props) {
         <h2>{props.quote}</h2>
       </div>
       <div className="profile-header__actions">
+        {props.canEdit && <ColorBlock onClick={props.onModal} text="Edit Profile" backgroundColor="#FFFFFF" border="1px solid black" isButton={true}/>}
         <ColorBlock text="Message" backgroundColor="#FFFFFF" border="1px solid black" isButton={true} />
         <ColorBlock text="High Five" color="#FFFFFF" backgroundColor="#000000" border="1px solid black" isButton={true} />
       </div>
@@ -34,6 +35,7 @@ export default function ProfileHeader(props) {
 }
 
 ProfileHeader.propTypes = {
+  canEdit: PropTypes.bool.isRequired,
   name: PropTypes.string.isRequired,
   dev: PropTypes.bool.isRequired,
   des: PropTypes.bool.isRequired,
@@ -42,4 +44,5 @@ ProfileHeader.propTypes = {
   mentor: PropTypes.bool.isRequired,
   quote: PropTypes.string.isRequired,
   picture: PropTypes.string.isRequired,
+  onModal: PropTypes.func,
 }
