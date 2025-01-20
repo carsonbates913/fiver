@@ -7,9 +7,7 @@ import { useInput } from '../Util/InputFunctions.js';
 export default function MessageInput(props) {
 
   const validate = (value) => {
-    console.log(value);
     const result = value.length < 250 || value==='' ? true : false;
-    console.log(result);
     return result;
   }
 
