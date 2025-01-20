@@ -1,10 +1,9 @@
 const express = require('express');
 const { check } = require('express-validator');
 const usersController = require('../controllers/users-controller');
+const checkAuth = require('../middleware/auth');
 
 const router = express.Router();
-
-router.get('/', usersController.getUsers);
 
 router.post('/signup', [
   check('email').normalizeEmail().isEmail(),
@@ -13,5 +12,11 @@ router.post('/signup', [
 ],usersController.signup);
 
 router.post('/login', usersController.login);
+
+router.use(checkAuth);
+
+router.get('/', usersController.getUsers);
+
+router.get('/profile/:uid', usersController.getUserById);
 
 module.exports = router;
