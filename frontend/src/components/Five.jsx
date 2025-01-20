@@ -1,8 +1,38 @@
+import { useContext } from 'react';
+import PropTypes from 'prop-types';
+
 import './Five.css'
+import { useHttpRequest } from '../hooks/httpHook.js';
+import LoadingModal from '../components/UIElements/LoadingModal.jsx';
+import { AuthContext } from '../context/AuthContext.jsx';
 
 export default function Five(props) {
+
+  const { isLoading, sendHttpRequest } = useHttpRequest();
+  const { token } = useContext(AuthContext);
+
+  const handleDeleteFive = async () => {
+    try {
+      const data = await sendHttpRequest(
+        `http://localhost:3000/api/fives/${props.id}`,
+        'DELETE',
+        {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + token,
+        },
+        null
+      )
+      console.log(data);
+      props.onDelete(props.id);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <div className={`five five--${props.color}`} style={{top: `${props.top}px`, left: `${props.left}px`}}>
+      {isLoading && <LoadingModal />}
+      {!isLoading && <>
       <header className="five__header">
         <p>{props.to}</p>
       </header>
@@ -22,7 +52,20 @@ export default function Five(props) {
           </svg>
         </div>
         <p>— {props.from}</p>
+        {props.canDelete && <button onClick={handleDeleteFive}className="five__delete-button">X</button>}
       </footer>
+      </>
+    }
     </div>
   )
+}
+
+Five.propTypes = {
+  canDelete: PropTypes.bool,
+  color: PropTypes.string.isRequired,
+  from: PropTypes.string.isRequired,
+  words: PropTypes.array.isRequired,
+  to: PropTypes.string.isRequired,
+  top: PropTypes.string,
+  left: PropTypes.string,
 }

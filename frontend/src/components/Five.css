@@ -2,7 +2,7 @@
   height: 15rem;
   width: 15rem;
   border-radius: .75rem;
-  position: absolute;
+  position: relative;
   display: flex;
   flex-flow: column nowrap;
   justify-content: start;
@@ -101,4 +101,16 @@
 .logo-container svg {
   height: 100%;
   width: 100%;
+}
+
+.five__delete-button {
+  padding: 0 .25rem .25rem 0;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  border-bottom-right-radius: .75rem;
+  color: #015A6C;
+  border: none;
+  background-color: transparent;
+  font-size: 1.25rem;
 }
