@@ -5,18 +5,24 @@ export const AuthContext = createContext({});
 
 export default function AuthProvider(props) {
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [token, setToken] = useState();
+  const [userId, setUserId] = useState();
+  const [name, setName] = useState();
 
-  const login = useCallback(() => {
-    setIsLoggedIn(true);
-  })
+  const login = useCallback((name, user, token) => {
+    setToken(token);
+    setUserId(user);
+    setName(name);
+  }, [])
 
   const logout = useCallback(() => {
-    setIsLoggedIn(false);
+    setToken(null);
+    setUserId(null);
+    setName(null);
   }, [])
 
   return (
-    <AuthContext.Provider value={{isLoggedIn, logout, login}}>
+    <AuthContext.Provider value={{isLoggedIn: !!token, token, logout, login, name, userId}}>
       {props.children}
     </AuthContext.Provider>
   )
