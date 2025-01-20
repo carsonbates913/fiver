@@ -9,11 +9,11 @@ export default function UserItem(props) {
     <li className="user-item">
       <Link className="user-item__content" to={`/${props.id}/profile`}>
         <div className="user-item__image">
-          <Avatar image={props.image} radius="6px" alt="image"></Avatar>
+          <Avatar image={props.picture} radius="6px" alt="image"></Avatar>
         </div>
         <div className="user-item__info">
           <h1>{props.name}</h1>
-          <h2>{props.role}</h2>
+          <h2>{props.dev && "Developer"} {props.des && "Designer"} {props.pm && "Project Manager"}</h2>
         </div>
       </Link>
     </li>
@@ -21,8 +21,10 @@ export default function UserItem(props) {
 }
 
 UserItem.propTypes = {
-  image: PropTypes.string.isRequired,
+  picture: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  role: PropTypes.string.isRequired,
+  dev: PropTypes.bool.isRequired,
+  des: PropTypes.bool.isRequired,
+  pm: PropTypes.bool.isRequired,
   id: PropTypes.string.isRequired,
 }

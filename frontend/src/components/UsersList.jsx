@@ -17,8 +17,11 @@ export default function UsersList(props) {
         <UserItem 
           key={user.id}
           id={user.id}
+          dev={user.dev}
+          des={user.des}
+          pm={user.pm}
           role={user.role}
-          image={user.image}
+          picture={user.picture}
           name={user.name}
         />
       ))}
