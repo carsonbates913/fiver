@@ -26,3 +26,9 @@
   background-color: #DFDFDF;
   transform: translateX(-50%);
 }
+
+.profile-page__modal {
+  width: 37rem;
+  height: 2rem;
+  background-color: white;
+}
