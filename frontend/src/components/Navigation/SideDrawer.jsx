@@ -18,7 +18,7 @@ export default function SideDrawer(props) {
 
   if(props.isStatic){
     return (
-      <aside className="side-drawer" ref={nodeRef} style={{position: "relative", display: "inline-flex"}}>
+      <aside className="side-drawer" ref={nodeRef} style={{position: "relative", display: "inline-flex", zIndex: "1"}}>
         {props.children}
       </aside>
     )
