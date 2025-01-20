@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 
@@ -5,8 +6,12 @@ import './MainNavigation.css';
 import SideDrawer from './SideDrawer.jsx';
 import NavLinks from './NavLinks.jsx';
 import Backdrop from '../UIElements/Backdrop.jsx';
+import { AuthContext } from '../../context/AuthContext.jsx';
 
 export default function MainNavigation(props) {
+
+  const { userId } = useContext(AuthContext);
+
   return (
     <>
       {!props.isStatic && (
@@ -19,7 +24,7 @@ export default function MainNavigation(props) {
           </NavLink>
         </div>
         <nav className="main-navigation__drawer-nav">
-          <NavLinks />
+          <NavLinks userId={userId} />
         </nav>
       </SideDrawer>
     </>
