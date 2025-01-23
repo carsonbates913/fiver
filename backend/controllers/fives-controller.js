@@ -112,6 +112,14 @@ const updateFive = async (req, res, next) => {
     return next(new HttpError("Something went wrong, could not updated fives"));
   }
 
+  if(!updatedFive){
+    return next(new HttpError("Could not find a five for this id"));
+  } 
+
+  if(updatedFive.sender.toString() !== req.userData.userId){
+    return next(new HttpError("You do not have authorization to edit this five"));
+  }
+
   updatedFive.words = words;
   updatedFive.message = message;
 
@@ -136,6 +144,10 @@ const deleteFive = async (req, res, next) => {
 
   if(!five){
     return next(new HttpError("Could not find a five with the provided id"));
+  }
+
+  if(five.sender.id !== req.userData.userId){
+    return next(new HttpError("You do not have authorization to delete this five"));
   }
 
   try {

@@ -1,4 +1,5 @@
 const express = require('express');
+const checkAuth = require('./middleware/auth');
 const bodyParser = require('body-parser');
 const HttpError = require('./models/error');
 const mongoose = require('mongoose');
@@ -19,9 +20,11 @@ app.use((req, res, next) => {
   next();
 })
 
-app.use('/api/fives', fivesRoutes); 
-
 app.use('/api/users', usersRoutes);
+
+app.use(checkAuth);
+
+app.use('/api/fives', fivesRoutes); 
 
 app.use(( req, res, next )  => {
   throw new HttpError("Could not find this route", 404);
