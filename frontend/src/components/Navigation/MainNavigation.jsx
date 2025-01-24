@@ -10,7 +10,11 @@ import { AuthContext } from '../../context/AuthContext.jsx';
 
 export default function MainNavigation(props) {
 
-  const { userId } = useContext(AuthContext);
+  const { userId, logout } = useContext(AuthContext);
+
+  const handleLogout = () => {
+    logout();
+  }
 
   return (
     <>
@@ -25,6 +29,7 @@ export default function MainNavigation(props) {
         </div>
         <nav className="main-navigation__drawer-nav">
           <NavLinks userId={userId} />
+          <button className="main-navigation__logout-button" onClick={handleLogout}>Log Out</button>
         </nav>
       </SideDrawer>
     </>

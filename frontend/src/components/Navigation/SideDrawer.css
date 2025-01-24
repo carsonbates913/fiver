@@ -1,6 +1,7 @@
 .side-drawer {
   width: 340px;
   height: 100vh;
+  padding: 1rem 0 5rem 0;
   border: 1px solid black;
   position: fixed;
   left: 0;
