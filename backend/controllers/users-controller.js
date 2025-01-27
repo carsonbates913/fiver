@@ -95,7 +95,7 @@ const signup = async (req, res, next) => {
 
   let token;
   try {
-    token = await jsonwebtoken.sign({userId: newUser.id}, 'this_needs_conversion_to_ev_variable', {expiresIn: "1h"}); 
+    token = await jsonwebtoken.sign({userId: newUser.id}, process.env.JWT_KEY, {expiresIn: "1h"}); 
   } catch (error) {
     return next(new HttpError("Something went wrong, could not sign up user with token"));
   }
@@ -130,7 +130,7 @@ const login = async (req, res, next) => {
 
   let token;
   try {
-    token = await jsonwebtoken.sign({userId: existingUser.id}, 'this_needs_conversion_to_ev_variable', {expiresIn: "1h"}); 
+    token = await jsonwebtoken.sign({userId: existingUser.id}, process.env.JWT_KEY, {expiresIn: "1h"}); 
   } catch (error) {
     return next(new HttpError("Something went wrong, could not login user"));
   }

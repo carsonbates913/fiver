@@ -48,7 +48,7 @@ export default function FeedForm(props) {
     }else {
       try{
         const data = await sendHttpRequest(
-          'http://localhost:3000/api/fives/',
+          import.meta.env.VITE_BACKEND_URL + '/fives/',
           'POST',
           {
             'Content-Type': 'application/json',
@@ -76,7 +76,7 @@ export default function FeedForm(props) {
     const fetchUsers = async () => {
       try {
         const data = await sendHttpRequest(
-          'http://localhost:3000/api/users',
+          import.meta.env.VITE_BACKEND_URL + '/users',
           'GET',
           {
             'Content-Type': 'application/json',

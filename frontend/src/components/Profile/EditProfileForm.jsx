@@ -121,7 +121,7 @@ export default function EditProfileForm(props) {
         formData.append('favoriteThing3', formState.inputs.favoriteThing3.value);
         formData.append('picture', formState.inputs.picture.value);
         const data = await sendHttpRequest(
-          `http://localhost:3000/api/users/profile/${props.userId}`,
+          `${import.meta.env.VITE_BACKEND_URL}/api/users/profile/${props.userId}`,
           'PATCH',
           {
             'Authorization': 'Bearer ' + token,

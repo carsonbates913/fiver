@@ -14,7 +14,7 @@ export default function Five(props) {
   const handleDeleteFive = async () => {
     try {
       const data = await sendHttpRequest(
-        `http://localhost:3000/api/fives/${props.id}`,
+        `${import.meta.env.VITE_BACKEND_URL}/fives/${props.id}`,
         'DELETE',
         {
           'Content-Type': 'application/json',

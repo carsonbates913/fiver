@@ -37,7 +37,7 @@ export default function LoginPage () {
     if(formState.isValid){
       try {
         const data = await sendHttpRequest(
-          'http://localhost:3000/api/users/login', 
+          import.meta.env.VITE_BACKEND_URL + '/users/login', 
           'POST', 
           {
           'Content-Type': 'application/json',

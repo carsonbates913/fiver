@@ -44,7 +44,7 @@ export default function SignUpPage () {
     if(formState.isValid){
       try{
         const data = await sendHttpRequest(
-          'http://localhost:3000/api/users/signup', 
+          import.meta.env.VITE_BACKEND_URL + '/users/signup', 
           'POST',
           {
             'Content-Type': 'application/json',
