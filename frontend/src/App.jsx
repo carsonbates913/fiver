@@ -63,7 +63,6 @@ function App() {
     const userData = JSON.parse(localStorage.getItem('fiverUserData'));
     if(userData && userData.token && new Date(userData.expiration) > new Date()){
       login(userData.name, userData.userId, userData.token, new Date(userData.expiration));
-      console.log("logged in already");
     }
     setLoading(false);
   }, [login])
