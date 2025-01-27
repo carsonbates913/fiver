@@ -7,6 +7,7 @@ import { useHttpRequest } from '../../hooks/httpHook.js';
 import TextInput from '../../components/Form/TextInput.jsx';
 import { AuthContext } from '../../context/AuthContext.jsx';
 import LoadingModal from '../../components/UIElements/LoadingModal.jsx';
+import { lengthValidate } from '../../components/Util/Validators.js';
 
 export default function LoginPage () {
 
@@ -69,8 +70,8 @@ export default function LoginPage () {
       </h1>
       <form className="login-page__form" onSubmit={handleSubmit}>
         <p>{hadAttempt && "*The email or password you have entered is incorrect"}</p>
-        <TextInput id="email" placeholder="Email Address" hadAttempt={hadAttempt} onInput={onInput}/>
-        <TextInput type="password" id="password" placeholder="Password" hadAttempt={hadAttempt} onInput={onInput}/>
+        <TextInput id="email" placeholder="Email Address" hadAttempt={hadAttempt} onInput={onInput} validator={lengthValidate}/>
+        <TextInput type="password" id="password" placeholder="Password" hadAttempt={hadAttempt} onInput={onInput} validator={lengthValidate}/>
         <button type="submit" className="login-page__sign-in-button">Sign In</button>
         <h2>Don&apos;t have an account yet? <Link to="/sign-up">Sign Up</Link></h2>
       </form>

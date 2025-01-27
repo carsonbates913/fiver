@@ -10,6 +10,7 @@ import LoadingModal from '../../components/UIElements/LoadingModal.jsx';
 import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext.jsx'
 import { useHttpRequest } from '../../hooks/httpHook.js';
+import { lengthValidate } from '../../components/Util/Validators.js';
 
 export default function SignUpPage () {
 
@@ -77,7 +78,7 @@ export default function SignUpPage () {
       </h1>
       <form className="sign-up-page__form" onSubmit={handleSubmit}>
         {hadAttempt &&<p>*The email or password you have entered is incorrect</p>}
-        <TextInput id="name" placeholder="Full name" hadAttempt={hadAttempt} onInput={onInput}/>
+        <TextInput id="name" placeholder="Full name" hadAttempt={hadAttempt} onInput={onInput} validator={lengthValidate}/>
         <EmailInput hadAttempt={hadAttempt} onInput={onInput}></EmailInput>
         <PasswordInput hadAttempt={hadAttempt} onInput={onInput}></PasswordInput>
         <button type="submit" className="sign-up-page__sign-in-button">Sign In</button>
