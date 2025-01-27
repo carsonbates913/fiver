@@ -15,8 +15,6 @@
 
 .text-input p {
   margin: 0;
-  position: absolute;
-  top: 0.75rem;
   color: white;
   font-size: .75rem;
   font-weight: 200;
