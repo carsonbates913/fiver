@@ -42,7 +42,7 @@
 
 .five__header p{
   margin: 0;
-  font-size: 2rem;
+  font-size: 1.75rem;
   font-weight: 800;
   font-style: bold;
 }
@@ -70,6 +70,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 30px;
 }
 
 .logo-container {
@@ -95,7 +96,8 @@
 
 .five__footer p {
   margin-right: 1rem;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
+  text-align: right;
 }
 
 .logo-container svg {
@@ -103,14 +105,47 @@
   width: 100%;
 }
 
+.five--blue .five__delete-button {
+  color: #015A6C;
+}
+
+.five--green .five__delete-button {
+  color: #004D1A;
+} 
+
+.five--pink .five__delete-button {
+  color: #800055;
+}
+
 .five__delete-button {
-  padding: 0 .25rem .25rem 0;
+  padding: .25rem;
   position: absolute;
   bottom: 0px;
   right: 0px;
   border-bottom-right-radius: .75rem;
-  color: #015A6C;
+  border-top-left-radius: .75rem;
   border: none;
   background-color: transparent;
   font-size: 1.25rem;
+  transition: color .2s ease, background-color .2s ease;
+}
+
+.five__delete-button:hover {
+  background-color: black;
+  color: white;
+}
+
+.five--blue .five__delete-button:hover {
+  background-color: #015A6C;
+  color: #03D4FD;
+}
+
+.five--green .five__delete-button:hover {
+  background-color: #004D1A;
+  color: #66FF99;
+} 
+
+.five--pink .five__delete-button:hover {
+  background-color: #800055;
+  color: #FF66CC;
 }

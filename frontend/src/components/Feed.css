@@ -32,4 +32,6 @@
   justify-content: start;
   align-content: start;
   gap: 40px;
+  overflow: hidden;
+  background-color: black;
 }
