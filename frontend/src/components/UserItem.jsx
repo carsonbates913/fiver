@@ -9,7 +9,7 @@ export default function UserItem(props) {
     <li className="user-item">
       <Link className="user-item__content" to={`/${props.id}/profile`}>
         <div className="user-item__image">
-          <Avatar image={props.picture} radius="6px" alt="image"></Avatar>
+          <Avatar image={`http://localhost:3000/${props.picture}`} radius="6px" alt="image"></Avatar>
         </div>
         <div className="user-item__info">
           <h1>{props.name}</h1>
