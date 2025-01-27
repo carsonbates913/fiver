@@ -48,10 +48,8 @@ export default function FeedPage() {
   useEffect(() => {
     const fetchFives = async () => {
       try {
-        const url = import.meta.env.VITE_BACKEND_URL + '/fives';
-        console.log(url); 
         const data = await sendHttpRequest(
-          'http://localhost:3000/api/fives',
+          import.meta.env.VITE_BACKEND_URL + '/fives',
           'GET',
           {
             'Content-Type': 'application/json',
