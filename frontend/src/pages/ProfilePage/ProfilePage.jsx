@@ -34,7 +34,7 @@ export default function ProfilePage () {
     const fetchUser = async() => {
       try {
         const data = await sendHttpRequest(
-          `http://localhost:3000/api/users/profile/${profileId}`,
+          `${import.meta.env.VITE_BACKEND_URL}/users/profile/${profileId}`,
           'GET',
           {
             'Content-Type': 'application/json',

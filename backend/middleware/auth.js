@@ -10,7 +10,7 @@ module.exports = async(req, res, next) => {
     if(!token) {
       throw new Error;
     }
-    const decryptedToken = jsonwebtoken.verify(token, 'this_needs_conversion_to_ev_variable');
+    const decryptedToken = jsonwebtoken.verify(token, process.env.JWT_KEY);
     req.userData = {userId: decryptedToken.userId};
     next();
   } catch (error) {

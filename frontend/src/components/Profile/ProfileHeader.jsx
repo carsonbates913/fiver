@@ -8,7 +8,7 @@ export default function ProfileHeader(props) {
   return (
     <div className="profile-header">
       <div className="profile-header__image">
-        <Avatar image={`http://localhost:3000/${props.user.picture}`} radius="4px" alt="profile picture"/>
+        <Avatar image={`${import.meta.env.VITE_ASSET_URL}/${props.user.picture}`} radius="4px" alt="profile picture"/>
       </div>
       <div className="profile-header__details">
         <h1>{props.user.name}</h1>
