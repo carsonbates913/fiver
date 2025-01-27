@@ -1,4 +1,7 @@
+const fs = require('fs');
+const path = require('path');
 const express = require('express');
+const checkAuth = require('./middleware/auth');
 const bodyParser = require('body-parser');
 const HttpError = require('./models/error');
 const mongoose = require('mongoose');
@@ -12,6 +15,8 @@ const app = express();
 
 app.use(bodyParser.json());
 
+app.use('/uploads/images', express.static(path.join('uploads', 'images')));
+
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
@@ -19,15 +24,22 @@ app.use((req, res, next) => {
   next();
 })
 
-app.use('/api/fives', fivesRoutes); 
-
 app.use('/api/users', usersRoutes);
+
+app.use(checkAuth);
+
+app.use('/api/fives', fivesRoutes); 
 
 app.use(( req, res, next )  => {
   throw new HttpError("Could not find this route", 404);
 })
 
 app.use((error, req, res, next) => {
+  if(req.file){
+    fs.unlink(req.file.path, (err) => {
+      console.log(err);
+    });
+  }
   if (res.headerSent) {
     return next(error);
   }

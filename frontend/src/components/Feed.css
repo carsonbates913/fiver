@@ -23,5 +23,15 @@
 }
 
 .feed__content {
+  height: 100%;
+  padding: 20px;
   position: relative;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: start;
+  justify-content: start;
+  align-content: start;
+  gap: 40px;
+  overflow: hidden;
+  background-color: black;
 }

@@ -1,23 +1,52 @@
+import { useState, useEffect, useContext } from 'react';
 import { useOutletContext } from 'react-router-dom';
 
 import './TeamPage.css'
 import UsersList from '../../components/UsersList.jsx'
 import NavButton from '../../components/Navigation/NavButton.jsx';
+import LoadingModal from '../../components/UIElements/LoadingModal.jsx';
+import { useHttpRequest } from '../../hooks/httpHook.js';
+import { AuthContext } from '../../context/AuthContext.jsx';
 
 export default function TeamPage () {
 
   const toggleNav = useOutletContext();
+  const [loadedUsers, setLoadedUsers] = useState();
+  
+  const { isLoading, sendHttpRequest } = useHttpRequest();
+  const { token } = useContext(AuthContext);
 
-  const USERS = [{id: "1", name: "Daisy Thompson", image: "/Profile_Photo_Carson.JPG", role: "designer"}, {id: "2", name: "carson", image: "/Profile_Photo_Carson.JPG", role: "developer"}, {id: "3", name: "Daisy Thompson", image: "/Profile_Photo_Carson.JPG", role: "designer"}, {id: "4", name: "Daisy Thompson", image: "/Profile_Photo_Carson.JPG", role: "designer"},{id: "5", name: "Daisy Thompson", image: "/Profile_Photo_Carson.JPG", role: "designer"},]
+  useEffect(()=> {
+    const fetchUsers = async () => {
+      try {
+        const data = await sendHttpRequest(
+          'http://localhost:3000/api/users',
+          'GET',
+          {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token,
+          },
+          null,
+        );
+        console.log(data);
+        setLoadedUsers(data.users);
+      } catch(error) {
+        console.log(error);
+      }
+    }
+
+    fetchUsers();
+  }, [sendHttpRequest])
 
   return (
     <>
       <main className="teampage">
+        {isLoading && <LoadingModal />}
         <h1>DALI Members</h1>
         <div className="teampage__nav-button">
           <NavButton toggleNav={toggleNav}></NavButton>
         </div>
-        <UsersList users={USERS} />
+        {!isLoading && loadedUsers && <UsersList users={loadedUsers} />}
       </main>
     </>
   )

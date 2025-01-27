@@ -1,3 +1,46 @@
 .loading-modal {
-  color: blue;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+.loading-modal__spinner {
+  height: 100px;
+  width: 100px;
+  border-radius: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+}
+
+.loading-modal__spinner.overlay {
+  height: 100%;
+  width: 100%;
+  border-radius: none;
+}
+
+.loading-modal__spinner svg {
+  fill: black;
+  width: 75px;
+  height: 75px;
+  animation-name: loadingAnimation;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes loadingAnimation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

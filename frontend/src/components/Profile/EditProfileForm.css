@@ -1,0 +1,98 @@
+.edit-profile-form {
+  padding: 2rem 4rem;
+  display: flex;
+  flex-flow: column;
+  gap: 2rem;
+}
+
+.edit-profile-form__input {
+  padding: 0;
+}
+
+.edit-profile-form__input p {
+  color: #D02929;
+}
+
+.edit-profile-form__input input {
+  width: 100%;
+  border: 1px solid black;
+  color: black;
+}
+
+.edit-profile-form__input input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  margin: 0;
+  border: .5px solid black;
+  border-radius: 20px;
+  background-color: white;
+  appearance: none;
+  transition: background-color .3s ease;
+}
+
+.edit-profile-form__input input[type="checkbox"][id="mentor"]:checked {
+  background-color: #FF4DC3;
+}
+
+.edit-profile-form__input input[type="checkbox"][id="core"]:checked {
+  background-color: #00E64D;
+}
+
+.edit-profile-form__input input[type="checkbox"]:checked {
+  background-color: #02C4EA;
+}
+
+.edit-profile-form__input label {
+  margin-bottom: .5rem;
+  position: relative;
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.edit-profile-form.text-input .error-message {
+  margin-bottom: .3rem;
+  position: absolute;
+  color: #D02929;
+  font-size: .75rem;
+  font-weight: 200
+}
+
+.edit-profile-form__row {
+  display: flex;
+  flex-flow: row;
+  justify-content: flex-start;
+}
+
+.edit-profile-form__row div {
+  width: 200px;
+}
+
+.edit-profile-form__image-upload {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.edit-profile-form__image-upload label {
+  padding: 10px 20px;
+  border: 2px solid black;
+  border-radius: .25rem;
+  background-color: white;
+  font-weight: 600;
+  transition: background-color .3s ease, color .3s ease;
+}
+
+.edit-profile-form__image-upload label:hover {
+  background-color: black;
+  color: white;
+}
+
+.edit-profile-form__image-upload .image-upload__preview {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  border: 1px solid black;
+}
+

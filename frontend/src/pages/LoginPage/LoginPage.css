@@ -7,19 +7,19 @@
   background-color: black;
 }
 
-.login-page__background svg {
+.login-page__background{
   height: 100%;
   width: 100%;
   position: absolute;
-  z-index: 0;
   top: 0;
   left: 0;
+  background-image: url('../../assets/BackGroundBlur.svg');
+  background-size: 100% 100%;
 }
 
 .login-page h1 {
   margin: 7.5rem 0 4rem 0;
   position: relative;
-  z-index: 1;
   color: white;
   font-size: 7rem;
   font-weight: 400;
@@ -28,7 +28,6 @@
 
 .login-page__form {
   position: relative;
-  z-index: 1;
 }
 
 .login-page__form p {

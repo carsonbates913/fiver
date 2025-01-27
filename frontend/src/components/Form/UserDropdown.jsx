@@ -20,7 +20,6 @@ export default function UserDropdown(props) {
 
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
-  const users = [{name: "carol", image: '/TanjiroWood.jpeg', id: '1'},{name: "carson", image: '/TanjiroWood.jpeg', id:'2'},{name: "parker", image: '/TanjiroWood.jpeg', id:'3'},]
 
   const { value, isValid } = inputState;
 
@@ -61,7 +60,7 @@ export default function UserDropdown(props) {
           <h1>{inputState.value ? inputState.value.name : ""}</h1>
         </div>
         {isOpen && <ul className="user-dropdown__list">
-          {users.map((user) => {
+          {props.users.map((user) => {
             return <li key={user.id}className="user-dropdown__item" onClick={() => handleChange(user)}>
               <div className="user-dropdown__image">
                 <Avatar image={'/Profile_Photo_Carson.JPG'} alt={"picture"}></Avatar>
@@ -76,6 +75,7 @@ export default function UserDropdown(props) {
 }
 
 UserDropdown.propTypes = {
+  users: PropTypes.array.isRequired,
   onInput: PropTypes.func.isRequired,
   hadAttempt: PropTypes.bool.isRequired,
 }

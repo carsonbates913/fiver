@@ -4,6 +4,8 @@ const { check } = require('express-validator');
 
 const router = express.Router();
 
+router.get('/', fivesController.getFives);
+
 router.get('/:fid', fivesController.getFiveById);
 
 router.get('/user/:uid', fivesController.getFivesByUserId);

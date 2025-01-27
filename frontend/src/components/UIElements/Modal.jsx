@@ -1,4 +1,4 @@
-import { useRef, forwardRef } from 'react';
+import { useRef, forwardRef, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { CSSTransition } from 'react-transition-group'
 import PropTypes from 'prop-types';
@@ -7,6 +7,17 @@ import './Modal.css';
 import Backdrop from './Backdrop.jsx';
 
 const ModalContent = forwardRef((props, ref) => {
+
+  useEffect(() => {
+  const originalOverflow = document.body.style.overflow;
+
+  document.body.style.overflow = 'hidden';
+
+  return () => {
+    document.body.style.overflow = originalOverflow;
+  };
+    }, []);
+
   const content = (
     <div className={`modal ${props.className}`} ref={ref}>
       <header className={`modal__header ${props.headerClass}`}>

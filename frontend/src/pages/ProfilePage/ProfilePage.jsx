@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 
 import './ProfilePage.css'
@@ -6,64 +6,88 @@ import ProfileHeader from '../../components/Profile/ProfileHeader.jsx';
 import InfoList from '../../components/Profile/InfoList.jsx';
 import QuotesList from '../../components/Profile/QuotesList.jsx';
 import FavoritesList from '../../components/Profile/FavoritesList.jsx';
+import { useHttpRequest } from '../../hooks/httpHook.js';
+import LoadingModal from '../../components/UIElements/LoadingModal.jsx';
+import { AuthContext } from '../../context/AuthContext.jsx';
+import Modal from '../../components/UIElements/Modal.jsx';
+import EditProfileForm from '../../components/Profile/EditProfileForm.jsx';
 
 export default function ProfilePage () {
 
-  const profiles =     [{
-    id: "1",
-    name: "Carson Bates",
-    year: "2025",
-    dev: false,
-    des: false,
-    pm: true,
-    core: true,
-    mentor: true,
-    major: "Computer Science",
-    minor: "Economics",
-    birthday: "09-04",
-    home: "CT, USA",
-    quote: "Live and Learn",
-    favoriteThing1: "Cooking with friends (and HOTPOT!)",
-    favoriteThing2: "Photosynthesizing at the campus Penthouse",
-    favoriteThing3: "My dog, Buddy (PLEASE ask me to see a photo)",
-    favoriteDartmouthTradition: "Green Key",
-    funFact: "Trees can talk to each other!",
-    picture: "https://api.typeform.com/responses/files/3a44bfffc1fa32fc06e81ff82e0a1478acff9964d0816be47181a3da70b8c96e/Photo_on_8_22_22_at_1.53_PM__2.jpg"
-  }]
+  const { isLoading, sendHttpRequest } = useHttpRequest();
+  const [loadedUser, setLoadedUser] = useState();
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
-  const {userId} = useParams();
-  const profile = profiles.find(profile => profile.id === userId);
+  const handleOpenModal = () => {
+    setIsModalVisible(true);
+  }
+
+  const handleCloseModal = () => {
+    setIsModalVisible(false);
+  }
+
+  const { userId, token } = useContext(AuthContext);
+
+  const { profileId } = useParams();
+
+  useEffect(() => {
+    const fetchUser = async() => {
+      try {
+        const data = await sendHttpRequest(
+          `http://localhost:3000/api/users/profile/${profileId}`,
+          'GET',
+          {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token,
+          },
+          null,
+        )
+        
+        setLoadedUser(data.user);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    fetchUser();
+  }, [sendHttpRequest, profileId]);
 
   return (
     <main className="profile-page">
+      {isLoading && <LoadingModal />}
+      {!isLoading && loadedUser && 
+      <>
+      <Modal
+        show={isModalVisible}
+        onCancel={handleCloseModal}
+        className="profile-page__modal"
+        >
+          <EditProfileForm onSubmit={handleCloseModal} userId={userId} user={loadedUser}/>
+      </Modal>
       <ProfileHeader 
-        name={profile.name}
-        year={profile.year}
-        dev={profile.dev}
-        des={profile.des}
-        pm={profile.pm}
-        core={profile.core}
-        mentor={profile.mentor}
-        quote={profile.quote}
-        picture={profile.picture}
+        canEdit={userId === profileId}
+        user={loadedUser}
+        onModal={handleOpenModal}
         />
       <div className="profile-page__separator"/>
       <InfoList
-        home={profile.home}
-        birthday={profile.birthday}
-        major={profile.major}
-        minor={profile.minor}
+        home={loadedUser.home}
+        birthday={loadedUser.birthday}
+        major={loadedUser.major}
+        minor={loadedUser.minor}
       />
       <QuotesList 
-        funFact={profile.funFact}
-        favoriteDartmouthTradition={profile.favoriteDartmouthTradition}
+        funFact={loadedUser.funFact}
+        favoriteDartmouthTradition={loadedUser.favoriteDartmouthTradition}
       />
       <h1 className="profile-page__favorites-header">Favorite Things</h1>
       <FavoritesList 
-        favoriteThing1={profile.favoriteThing1}
-        favoriteThing2={profile.favoriteThing2}
-        favoriteThing3={profile.favoriteThing3}
+        favoriteThing1={loadedUser.favoriteThing1}
+        favoriteThing2={loadedUser.favoriteThing2}
+        favoriteThing3={loadedUser.favoriteThing3}
       />
+      </>
+      }
     </main>
   )
 }

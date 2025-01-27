@@ -4,6 +4,17 @@ const mongoose = require('mongoose');
 const Five = require('../models/five');
 const User = require('../models/user');
 
+const getFives = async (req, res, next) => {
+  let fives;
+  try {
+    fives = await Five.find({});
+  } catch (error) {
+    throw new HttpError("Somethign went wrong, could not find fives");
+  } 
+
+  res.json({fives: fives.map((five) => five.toObject({getters: true}))});
+}
+
 const getFiveById = async (req, res, next) => {
   const fiveId = req.params.fid;
 
@@ -101,6 +112,14 @@ const updateFive = async (req, res, next) => {
     return next(new HttpError("Something went wrong, could not updated fives"));
   }
 
+  if(!updatedFive){
+    return next(new HttpError("Could not find a five for this id"));
+  } 
+
+  if(updatedFive.sender.toString() !== req.userData.userId){
+    return next(new HttpError("You do not have authorization to edit this five"));
+  }
+
   updatedFive.words = words;
   updatedFive.message = message;
 
@@ -127,6 +146,10 @@ const deleteFive = async (req, res, next) => {
     return next(new HttpError("Could not find a five with the provided id"));
   }
 
+  if(five.sender.id !== req.userData.userId){
+    return next(new HttpError("You do not have authorization to delete this five"));
+  }
+
   try {
     const sess = await mongoose.startSession();
     sess.startTransaction();
@@ -143,6 +166,7 @@ const deleteFive = async (req, res, next) => {
   res.status(200).json("Deleted five");
 }
 
+exports.getFives = getFives;
 exports.getFiveById = getFiveById;
 exports.getFivesByUserId = getFivesByUserId;
 exports.createFive = createFive;
