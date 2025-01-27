@@ -28,7 +28,9 @@
 }
 
 .profile-page__modal {
-  width: 37rem;
-  height: 2rem;
+  width: 50rem;
+  height: 45rem;
+  border-radius: 1rem;
   background-color: white;
+  overflow: scroll;
 }

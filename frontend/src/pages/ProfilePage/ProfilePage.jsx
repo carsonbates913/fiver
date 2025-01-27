@@ -60,21 +60,13 @@ export default function ProfilePage () {
       <Modal
         show={isModalVisible}
         onCancel={handleCloseModal}
-        className="profile-page__modal">
-          <EditProfileForm />
-          hello
+        className="profile-page__modal"
+        >
+          <EditProfileForm onSubmit={handleCloseModal} userId={userId} user={loadedUser}/>
       </Modal>
       <ProfileHeader 
         canEdit={userId === profileId}
-        name={loadedUser.name}
-        year={loadedUser.year}
-        dev={loadedUser.dev}
-        des={loadedUser.des}
-        pm={loadedUser.pm}
-        core={loadedUser.core}
-        mentor={loadedUser.mentor}
-        quote={loadedUser.quote}
-        picture={loadedUser.picture}
+        user={loadedUser}
         onModal={handleOpenModal}
         />
       <div className="profile-page__separator"/>
