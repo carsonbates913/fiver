@@ -44,7 +44,6 @@ export default function FeedForm(props) {
     e.preventDefault();
     if(!formState.isValid){
       setAttemptedSubmit(true);
-      console.log(formState);
     }else {
       try{
         const data = await sendHttpRequest(
@@ -63,7 +62,6 @@ export default function FeedForm(props) {
             sender: userId,
           })
         );
-        console.log(data);
         props.onSubmit();
         navigateTo(0);
       } catch (error) {
@@ -84,7 +82,6 @@ export default function FeedForm(props) {
           },
           null,
         );
-        console.log(data);
         setLoadedUsers(data.users);
       } catch(error) {
         console.log(error);

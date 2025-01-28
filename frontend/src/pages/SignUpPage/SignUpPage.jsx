@@ -55,7 +55,6 @@ export default function SignUpPage () {
             password: formState.inputs.password.value,
           })
         );
-        console.log(data);
         login(data.name, data.userId, data.token);
         navigate('/feed');
       } catch (error) {
@@ -63,8 +62,6 @@ export default function SignUpPage () {
       }
     }else{
       setHadAttempt(true);
-      console.log("failure");
-      console.log(formState);
     }
   }
 
@@ -81,8 +78,8 @@ export default function SignUpPage () {
         <TextInput id="name" placeholder="Full name" hadAttempt={hadAttempt} onInput={onInput} validator={lengthValidate}/>
         <EmailInput hadAttempt={hadAttempt} onInput={onInput}></EmailInput>
         <PasswordInput hadAttempt={hadAttempt} onInput={onInput}></PasswordInput>
-        <button type="submit" className="sign-up-page__sign-in-button">Sign In</button>
-        <Link to="/login" >Have an account already? Sign in</Link>
+        <button style={{marginBottom: '20px'}}type="submit" className="sign-up-page__sign-in-button">Sign In</button>
+        <h2>Have an account already? <Link to="/login">Sign In</Link></h2>
       </form>
     </main>
   )

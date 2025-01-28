@@ -28,7 +28,7 @@ export default function MainNavigation(props) {
           </NavLink>
         </div>
         <nav className="main-navigation__drawer-nav">
-          <NavLinks userId={userId} />
+          <NavLinks userId={userId} onClick={props.toggleNav}/>
           <button className="main-navigation__logout-button" onClick={handleLogout}>Log Out</button>
         </nav>
       </SideDrawer>

@@ -28,7 +28,6 @@ export default function TeamPage () {
           },
           null,
         );
-        console.log(data);
         setLoadedUsers(data.users);
       } catch(error) {
         console.log(error);

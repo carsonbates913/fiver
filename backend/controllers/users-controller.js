@@ -200,16 +200,18 @@ const updateUser = async (req, res, next) => {
   updatedUser.favoriteThing3 = favoriteThing3;
   updatedUser.favoriteDartmouthTradition = favoriteDartmouthTradition;
   updatedUser.funFact = funFact;
-  updatedUser.picture = req.file.path;
+  if(req.file){
+    updatedUser.picture = req.file.path;
+    fs.unlink(imagePath, (error) => {
+      console.log(error);
+    })
+  }
+
   try {
     await updatedUser.save();
   } catch(error) {
     return next(new HttpError("Something went wrong, could not save updated User"));
   }
-
-  fs.unlink(imagePath, (error) => {
-    console.log(error);
-  })
 
   res.status(200).json({updatedUser: updatedUser.toObject({getters: true})});
 }

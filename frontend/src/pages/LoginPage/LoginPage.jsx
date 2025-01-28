@@ -53,7 +53,6 @@ export default function LoginPage () {
       }
     }else{
       setHadAttempt(true);
-      console.log(formState);
     }
   }
 

@@ -13,7 +13,7 @@ export default function UserItem(props) {
         </div>
         <div className="user-item__info">
           <h1>{props.name}</h1>
-          <h2>{props.dev && "Developer"} {props.des && "Designer"} {props.pm && "Project Manager"}</h2>
+          <h2>{[props.dev && "Developer", props.des && "Designer", props.pm && "Project Manager"].filter(Boolean).join(" - ")}</h2>
         </div>
       </Link>
     </li>

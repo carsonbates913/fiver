@@ -3,8 +3,16 @@ import PropTypes from 'prop-types';
 import './ProfileHeader.css'
 import Avatar from '../UIElements/Avatar.jsx';
 import ColorBlock from '../UIElements/ColorBlock.jsx';
+import { useNavigate } from 'react-router-dom';
 
 export default function ProfileHeader(props) {
+
+  const navigateTo = useNavigate();
+
+  const handleHighFive = () => {
+    navigateTo('/feed');
+  }
+
   return (
     <div className="profile-header">
       <div className="profile-header__image">
@@ -12,7 +20,8 @@ export default function ProfileHeader(props) {
       </div>
       <div className="profile-header__details">
         <h1>{props.user.name}</h1>
-        <h2>{props.user.dev && "Developer"} {props.user.des && "Designer"} {props.pm && "Project Manager"} - 2027</h2>
+        <h2 style={{marginBottom: '10px'}}>{[props.user.dev && "Developer", props.user.des && "Designer", props.user.pm && "Project Manager"].filter(Boolean).join(" - ")}</h2>
+        <h2>2027</h2>
         <div className="profile-header__tag-container">
           {props.user.core && <ColorBlock text="core" backgroundColor="#66FF99"/>}
           {props.user.mentor && <ColorBlock text="mentor" backgroundColor="#FF66CC"/>}
@@ -27,7 +36,7 @@ export default function ProfileHeader(props) {
       </div>
       <div className="profile-header__actions">
         {props.canEdit && <ColorBlock onClick={props.onModal} text="Edit Profile" backgroundColor="#FFFFFF" border="1px solid black" isButton={true}/>}
-        <ColorBlock text="High Five" color="#FFFFFF" backgroundColor="#000000" border="1px solid black" isButton={true} />
+        <ColorBlock onClick={handleHighFive}text="High Five" color="#FFFFFF" backgroundColor="#000000" border="1px solid black" isButton={true} />
       </div>
     </div>
   )

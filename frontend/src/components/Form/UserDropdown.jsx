@@ -55,7 +55,7 @@ export default function UserDropdown(props) {
         </svg>
         <div className="user-dropdown__selected-user">
           <div className="user-dropdown__image">
-            {inputState.value ? (<Avatar image={'/Profile_Photo_Carson.JPG'} alt={"picture"}></Avatar>) : ""}
+            {inputState.value ? (<Avatar image={`${import.meta.env.VITE_ASSET_URL}/${inputState.value.picture}`} alt={"picture"}></Avatar>) : ""}
           </div>
           <h1>{inputState.value ? inputState.value.name : ""}</h1>
         </div>
@@ -63,7 +63,7 @@ export default function UserDropdown(props) {
           {props.users.map((user) => {
             return <li key={user.id}className="user-dropdown__item" onClick={() => handleChange(user)}>
               <div className="user-dropdown__image">
-                <Avatar image={'/Profile_Photo_Carson.JPG'} alt={"picture"}></Avatar>
+                <Avatar image={`${import.meta.env.VITE_ASSET_URL}/${user.picture}`} alt={"picture"}></Avatar>
               </div>
               <h1>{user.name}</h1>
             </li>

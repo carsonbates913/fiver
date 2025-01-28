@@ -22,7 +22,6 @@ export default function Five(props) {
         },
         null
       )
-      console.log(data);
       props.onDelete(props.id);
     } catch (error) {
       console.log(error);

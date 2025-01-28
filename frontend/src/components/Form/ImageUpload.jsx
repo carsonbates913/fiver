@@ -16,11 +16,8 @@ export default function ImageUpload(props) {
     const fileReader = new FileReader();
     fileReader.onload = () => {
       setPreviewUrl(fileReader.result);
-      console.log(fileReader.result);
     }
     fileReader.readAsDataURL(file);
-    console.log(file);
-    console.log("check");
   }, [file])
 
   const handleSelectImage = (e) => {

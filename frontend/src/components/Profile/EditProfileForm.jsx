@@ -88,7 +88,7 @@ export default function EditProfileForm(props) {
       },
       picture: {
         value: null,
-        isValid: false,
+        isValid: true,
       }
     },
     true
@@ -98,10 +98,8 @@ export default function EditProfileForm(props) {
     e.preventDefault();
     if(!formState.isValid){
       setAttemptedSubmit(true);
-      console.log(formState);
     }else {
       try{
-        console.log(formState);
         const formData = new FormData();
         formData.append('year', formState.inputs.year.value);
         formData.append('dev', formState.inputs.dev.value);
@@ -128,7 +126,7 @@ export default function EditProfileForm(props) {
           },
           formData,
         );
-        console.log(data);
+
         props.onSubmit();
         navigateTo(0);
       } catch (error) {
@@ -140,7 +138,7 @@ export default function EditProfileForm(props) {
   return (
     <form className="edit-profile-form" onSubmit={handleSubmit}>
     <ImageUpload className="edit-profile-form__image-upload" id="picture" onInput={onInput}></ImageUpload>
-    <TextInput initialValue={props.user.year}label="Year" className="edit-profile-form__input" id="year" onInput={onInput} validator={lengthValidate}/>
+    <TextInput initialValue={props.user.year}label="Year" className="edit-profile-form__input" id="year" onInput={onInput} validator={lengthValidate} hadAttempt={attemptedSubmit}/>
     <div className="edit-profile-form__row">
     <TextInput label="Developer" type="checkbox" className="edit-profile-form__input" id="dev" onInput={onInput} initialValue={props.user.dev}/>
     <TextInput label="Designer"type="checkbox" className="edit-profile-form__input" id="des" onInput={onInput} initialValue={props.user.des}/>
@@ -150,16 +148,16 @@ export default function EditProfileForm(props) {
     <TextInput label="Core" type="checkbox" className="edit-profile-form__input" id="core" onInput={onInput} initialValue={props.user.core}/>
     <TextInput label="Mentor" type="checkbox" className="edit-profile-form__input" id="mentor" onInput={onInput} initialValue={props.user.mentor}/>
     </div>
-    <TextInput label="Major" className="edit-profile-form__input" id="major" onInput={onInput} initialValue={props.user.major} validator={lengthValidate}/>
-    <TextInput label="Minor" className="edit-profile-form__input" id="minor" onInput={onInput} initialValue={props.user.minor} validator={lengthValidate}/>
-    <TextInput label="Birthday" className="edit-profile-form__input" id="birthday" onInput={onInput} initialValue={props.user.birthday} validator={lengthValidate}/>
-    <TextInput label="Home" className="edit-profile-form__input" id="home" onInput={onInput} initialValue={props.user.home} validator={lengthValidate}/>
-    <TextInput label="Quote" className="edit-profile-form__input" id="quote" onInput={onInput} initialValue={props.user.quote} validator={lengthValidate}/>
-    <TextInput label="Fun Fact" className="edit-profile-form__input" id="funFact" onInput={onInput} initialValue={props.user.funFact} validator={lengthValidate}/>
-    <TextInput label="favoriteDartmouthTradition" className="edit-profile-form__input" id="favoriteDartmouthTradition" onInput={onInput} initialValue={props.user.favoriteDartmouthTradition} validator={lengthValidate}/>
-    <TextInput label="Favorite Thing 1" className="edit-profile-form__input" id="favoriteThing1" onInput={onInput} initialValue={props.user.favoriteThing1} validator={lengthValidate}/>
-    <TextInput label="Favorite Thing 2" className="edit-profile-form__input" id="favoriteThing2" onInput={onInput} initialValue={props.user.favoriteThing2} validator={lengthValidate}/>
-    <TextInput label="Favorite Thing 3" className="edit-profile-form__input" id="favoriteThing3" onInput={onInput} initialValue={props.user.favoriteThing3} validator={lengthValidate}/>
+    <TextInput label="Major" className="edit-profile-form__input" id="major" onInput={onInput} initialValue={props.user.major} validator={lengthValidate} hadAttempt={attemptedSubmit}/>
+    <TextInput label="Minor" className="edit-profile-form__input" id="minor" onInput={onInput} initialValue={props.user.minor} validator={lengthValidate} hadAttempt={attemptedSubmit}/>
+    <TextInput label="Birthday" className="edit-profile-form__input" id="birthday" onInput={onInput} initialValue={props.user.birthday} validator={lengthValidate} hadAttempt={attemptedSubmit}/>
+    <TextInput label="Home" className="edit-profile-form__input" id="home" onInput={onInput} initialValue={props.user.home} validator={lengthValidate} hadAttempt={attemptedSubmit}/>
+    <TextInput label="Quote" className="edit-profile-form__input" id="quote" onInput={onInput} initialValue={props.user.quote} validator={lengthValidate} hadAttempt={attemptedSubmit}/>
+    <TextInput label="Fun Fact" className="edit-profile-form__input" id="funFact" onInput={onInput} initialValue={props.user.funFact} validator={lengthValidate} hadAttempt={attemptedSubmit}/>
+    <TextInput label="Favorite Dartmouth Tradition" className="edit-profile-form__input" id="favoriteDartmouthTradition" onInput={onInput} initialValue={props.user.favoriteDartmouthTradition} validator={lengthValidate} hadAttempt={attemptedSubmit}/>
+    <TextInput label="Favorite Thing 1" className="edit-profile-form__input" id="favoriteThing1" onInput={onInput} initialValue={props.user.favoriteThing1} validator={lengthValidate} hadAttempt={attemptedSubmit}/>
+    <TextInput label="Favorite Thing 2" className="edit-profile-form__input" id="favoriteThing2" onInput={onInput} initialValue={props.user.favoriteThing2} validator={lengthValidate} hadAttempt={attemptedSubmit}/>
+    <TextInput label="Favorite Thing 3" className="edit-profile-form__input" id="favoriteThing3" onInput={onInput} initialValue={props.user.favoriteThing3} validator={lengthValidate} hadAttempt={attemptedSubmit}/>
     <ColorBlock text="Submit" isButton={true} border="none" backgroundColor="#66FF99" type="submit"></ColorBlock>
     </form>
   )
